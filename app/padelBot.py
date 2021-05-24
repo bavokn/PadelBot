@@ -29,8 +29,6 @@ client = Client(email, password)
 if not client.isLoggedIn():
     client.login(email, password)
 
-friends = client.searchForUsers("bavo")  # return a list of names
-# message_id = client.send(Message(text='test message'), thread_id=friends[0].uid, thread_type=ThreadType.USER)
 
 def getBaseUrl():
   return "https://www.tennisvlaanderen.be/home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true"
@@ -80,7 +78,7 @@ def getDailyReport(fields, date):
 # send report for each day
 def sendReport(datesDict):
   for k,v in datesDict.items():
-      message_id = client.send(Message(text=getDailyReport(v, k)), thread_id=friends[0].uid, thread_type=ThreadType.USER)
+      message_id = client.send(Message(text=getDailyReport(v, k)), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
       time.sleep(1)
 
 #run function
@@ -101,7 +99,7 @@ while True :
       if len(changes) > 0:
         fields[day] = newFields
         message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
-        message_id = client.send(Message(text=message), thread_id=friends[0].uid, thread_type=ThreadType.USER)
+        message_id = client.send(Message(text=message), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
         logging.info("found a change in the calender, sending :")
         logging.info(message)
       # send notification something changed
