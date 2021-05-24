@@ -1,0 +1,167 @@
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #1 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #1 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #2 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #3 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #4 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #1 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #2 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #3 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #4 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #1 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+INFO:client:Login of padelbott@gmail.com successful.
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "POST /api/graphqlbatch/ HTTP/1.1" 200 None
+DEBUG:client:[{'bavo': {'users': {'nodes': [{'id': '100000983716864', 'name': 'Bavo Knaeps', 'first_name': 'Bavo', 'last_name': 'Knaeps', 'profile_picture': {'uri': 'https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-1/cp0/p50x50/76747439_2691636840879080_1669486270792859648_n.jpg?_nc_cat=101&ccb=1-3&_nc_sid=7206a8&_nc_ohc=3EMP5CxxGYkAX-V0uP1&_nc_ht=scontent-bru2-1.xx&tp=27&oh=bc473da0356b5aa0cf741e31034448b0&oe=60CF9637'}, 'is_viewer_friend': True, 'url': 'https://www.facebook.com/bavo.knaeps', 'gender': 'MALE', 'viewer_affinity': 0}, {'id': '100054338898746', 'name': 'Bavonci Product Design & Development', 'first_name': 'Bavonci', 'last_name': 'Development', 'profile_picture': {'uri': 'https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-1/cp0/p50x50/158723725_236346594853302_5411309893750022148_n.jpg?_nc_cat=100&ccb=1-3&_nc_sid=c6021c&_nc_ohc=Syc9cV5BWfkAX_opyqE&_nc_ht=scontent-bru2-1.xx&tp=27&oh=e11f708c4cf24ef18c4c53cd4016a95e&oe=60D2C4BB'}, 'is_viewer_friend': False, 'url': 'https://www.facebook.com/Bavonci', 'gender': 'NEUTER', 'viewer_affinity': 0}, {'id': '100057657601353', 'name': 'Bravo K-9', 'first_name': 'Bravo', 'last_name': 'K-9', 'profile_picture': {'uri': 'https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-1/cp0/p50x50/160718109_180563313875588_3532966058382925597_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=c6021c&_nc_ohc=ZyujOhGnH3gAX8UBDml&_nc_ht=scontent-bru2-1.xx&tp=27&oh=143f0f94c13cad04e22013c4311ceea5&oe=60D170B9'}, 'is_viewer_friend': False, 'url': 'https://www.facebook.com/BravoDogObedience', 'gender': 'NEUTER', 'viewer_affinity': 0}, {'id': '100063518978582', 'name': 'Bravo Baseball', 'first_name': 'Bravo', 'last_name': 'Baseball', 'profile_picture': {'uri': 'https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-1/cp0/p50x50/169968340_140294171431215_4932996717548284900_n.jpg?_nc_cat=110&ccb=1-3&_nc_sid=c6021c&_nc_ohc=RtrfkA21J9EAX_0QsHA&_nc_ht=scontent-bru2-1.xx&tp=27&oh=aa97d6de6f9d493356353d447e4ed4f3&oe=60D32E8A'}, 'is_viewer_friend': False, 'url': 'https://www.facebook.com/profile.php?id=100063518978582', 'gender': 'NEUTER', 'viewer_affinity': 0}, {'id': '100051215416455', 'name': 'Bravo Inspirations', 'first_name': 'Bravo', 'last_name': 'Inspirations', 'profile_picture': {'uri': 'https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-1/cp0/p50x50/161552485_212287950488384_2513161767289352477_n.jpg?_nc_cat=107&ccb=1-3&_nc_sid=c6021c&_nc_ohc=QCmK1v-anP8AX8IcRsQ&_nc_ht=scontent-bru2-1.xx&tp=27&oh=dd3404a02cc2a1e24b171c97275aa089&oe=60D11EAA'}, 'is_viewer_friend': False, 'url': 'https://www.facebook.com/profile.php?id=100051215416455', 'gender': 'NEUTER', 'viewer_affinity': 0}, {'id': '100063471553148', 'name': 'Bravo Le Roux', 'first_name': 'Bravo', 'last_name': 'Le Roux', 'profile_picture': {'uri': 'https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-1/cp0/p50x50/185400706_164144105711307_2628561184042582602_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=c6021c&_nc_ohc=XtkMHdC0BYYAX97h3-h&_nc_ht=scontent-bru2-1.xx&tp=27&oh=3a554d11f2f8e340b042698898fef40e&oe=60CFB34B'}, 'is_viewer_friend': False, 'url': 'https://www.facebook.com/bravolerouxwp', 'gender': 'NEUTER', 'viewer_affinity': 0}, {'id': '100063628837881', 'name': 'Bravo On Deck KZN', 'first_name': 'Bravo', 'last_name': 'KZN', 'profile_picture': {'uri': 'https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-1/cp0/p50x50/161274361_125405089590452_6767978502117601172_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=c6021c&_nc_ohc=EKAs_2X0UGMAX_r45lC&_nc_ht=scontent-bru2-1.xx&tp=27&oh=bfe1a5c8e12f0a247d15043051cb326a&oe=60CFCF87'}, 'is_viewer_friend': False, 'url': 'https://www.facebook.com/BravoBeatSA', 'gender': 'NEUTER', 'viewer_affinity': 0}, {'id': '100063673807193', 'name': 'Bravo’s Cake', 'first_name': 'Bravo’s', 'last_name': 'Cake', 'profile_picture': {'uri': 'https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-1/cp0/p50x50/165816853_129490622516731_6488211716886496666_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=c6021c&_nc_ohc=fMCb6VnXoGkAX9uzdee&_nc_ht=scontent-bru2-1.xx&tp=27&oh=16d769ddc5be5d8ed6282bd251c7aef8&oe=60D1305F'}, 'is_viewer_friend': False, 'url': 'https://www.facebook.com/dulcetentacionbravoscake', 'gender': 'NEUTER', 'viewer_affinity': 0}, {'id': '100054534036140', 'name': 'Bravo Business Solutions - Perth', 'first_name': 'Bravo', 'last_name': 'Perth', 'profile_picture': {'uri': 'https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-1/cp0/c77.49.297.297a/s50x50/151605546_223671729460627_4063082148748101053_n.jpg?_nc_cat=108&ccb=1-3&_nc_sid=c6021c&_nc_ohc=ggRCGFvEIAAAX_jSX9j&_nc_ht=scontent-bru2-1.xx&tp=28&oh=03866411092a900694fbdcc0ccb7243f&oe=60D32E19'}, 'is_viewer_friend': False, 'url': 'https://www.facebook.com/BooksBAS', 'gender': 'NEUTER', 'viewer_affinity': 0}, {'id': '100057631412089', 'name': "Bravo's moonwalks", 'first_name': "Bravo's", 'last_name': 'moonwalks', 'profile_picture': {'uri': 'https://scontent-bru2-1.xx.fbcdn.net/v/t1.6435-1/cp0/p50x50/132200458_121524009778646_5242026588132059204_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=c6021c&_nc_ohc=yB6w35UyWOkAX8DyMEH&_nc_ht=scontent-bru2-1.xx&tp=27&oh=705ad3ae5948653af8a089a2d12de2c2&oe=60D2A07B'}, 'is_viewer_friend': False, 'url': 'https://www.facebook.com/profile.php?id=100057631412089', 'gender': 'NEUTER', 'viewer_affinity': 0}]}}}]
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.tennisvlaanderen.be:443
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "GET /home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "POST /home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "GET /reserveer-een-terrein?clubId=2293&planningDay=24-05-2021&terrainGroupId=3966&ownClub=true&clubCourts%5B0%5D=I&clubCourts%5B1%5D=O HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "POST /home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "GET /reserveer-een-terrein?clubId=2293&planningDay=25-05-2021&terrainGroupId=3966&ownClub=true&clubCourts%5B0%5D=I&clubCourts%5B1%5D=O HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "POST /home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "GET /reserveer-een-terrein?clubId=2293&planningDay=26-05-2021&terrainGroupId=3966&ownClub=true&clubCourts%5B0%5D=I&clubCourts%5B1%5D=O HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "POST /home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "GET /reserveer-een-terrein?clubId=2293&planningDay=27-05-2021&terrainGroupId=3966&ownClub=true&clubCourts%5B0%5D=I&clubCourts%5B1%5D=O HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "POST /home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "GET /reserveer-een-terrein?clubId=2293&planningDay=28-05-2021&terrainGroupId=3966&ownClub=true&clubCourts%5B0%5D=I&clubCourts%5B1%5D=O HTTP/1.1" 200 None

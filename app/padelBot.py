@@ -1,0 +1,128 @@
+# -*- coding: utf-8 -*-
+import requests
+import time
+from requests_html import HTMLSession
+from bs4 import BeautifulSoup
+import nest_asyncio
+import fbchat
+import datetime
+import pprint
+from datetime import date, timedelta
+from fbchat import Client, Message, ThreadType
+import calendar
+import logging
+from mocks import datesMock, fieldsMock, newFieldsMock
+logging.basicConfig(filename='padelBot.log', level=logging.DEBUG)
+
+pp = pprint.PrettyPrinter(indent=4)
+
+nest_asyncio.apply()
+
+#create array for upcoming week
+today = datetime.datetime.today()
+dates = [today + timedelta(days=i) for i in range(today.weekday(), 7 - today.weekday())]
+# dates = datesMock()
+email = "padelbott@gmail.com"
+password = "padel1234"
+
+client = Client(email, password)
+if not client.isLoggedIn():
+    client.login(email, password)
+
+friends = client.searchForUsers("bavo")  # return a list of names
+# message_id = client.send(Message(text='test message'), thread_id=friends[0].uid, thread_type=ThreadType.USER)
+
+def getBaseUrl():
+  return "https://www.tennisvlaanderen.be/home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true"
+
+def getPadelURL(planningDay, terrainGroupId="3966", ownClub="true"):
+  return "/reserveer-een-terrein?clubId=2293&planningDay={}&terrainGroupId={}&ownClub={}&clubCourts[0]=I&clubCourts[1]=O".format(planningDay, terrainGroupId, ownClub)
+
+
+def getLoginParams(padelURL):
+  return {
+    "_58_login" : "0594943",
+    "_58_password" : "BAVO KNAEPS",
+    "_58_redirect" : padelURL
+}
+
+session = HTMLSession()
+c = session.get(getBaseUrl())
+
+def getAvailableTimeSlots(d, cookies = c.cookies):
+  date = d.strftime("%d-%m-%Y")
+  padelURL = getPadelURL(date)
+  loginParams = getLoginParams(padelURL) 
+  response = session.post(getBaseUrl(), data=loginParams, cookies = cookies)
+  soup = BeautifulSoup(response.content.decode('utf-8'), features="lxml")
+  table = soup.html.find_all("div", {"class": "reservation-table"})[0].find("table").find("tbody")
+  fields = {"Padel 1" : [], "Padel 2" : [], "Padel 3" : []}
+  for row in table.find_all("tr"):
+    p =  row.select("td")
+    t = row.select("th")[0].text
+    if len(p) > 0:
+      field = p[0].text.replace("Reserveren in het verleden is niet toegelaten", "")
+      if "vrij" in field.lower():
+        timeslot = datetime.datetime.strptime(date + " " + t, '%d-%m-%Y %H:%M')
+        #only take slots after 5, or weekend
+        if (16 < timeslot.hour < 23)  or  timeslot.weekday() > 4:
+          fields[field.replace("Vrij", "").strip()].append(timeslot)
+  return fields
+
+def getDailyReport(fields, date):
+  message = "Daily Padel report : {} \n".format(date.strftime("%d-%m-%Y"))
+  for k, v in fields.items():
+    message += k + " \n"
+    for timeSlot in v:
+      message += timeSlot.strftime("%H:%M") + "\n"
+  return message
+
+# send report for each day
+def sendReport(datesDict):
+  for k,v in datesDict.items():
+      message_id = client.send(Message(text=getDailyReport(v, k)), thread_id=friends[0].uid, thread_type=ThreadType.USER)
+      time.sleep(1)
+
+#run function
+fields = {x: getAvailableTimeSlots(x) for x in dates}
+# fields = fieldsMock()
+dailyNoticeSent = False
+d = datetime.datetime.today()
+
+while True :
+  logging.info("i'm awake !")
+  #loop over each day
+  for day in dates:
+    newFields = getAvailableTimeSlots(day)
+    # newFields = newFieldsMock()[day]
+    #check if extra field is available
+    for (k, field) ,(k2, newField) in zip(fields[day].items(), newFields.items()):
+      changes = list(set(newField) - set(field))
+      if len(changes) > 0:
+        fields[day] = newFields
+        message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
+        message_id = client.send(Message(text=message), thread_id=friends[0].uid, thread_type=ThreadType.USER)
+        logging.info("found a change in the calender, sending :")
+        logging.info(message)
+      # send notification something changed
+
+    if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
+      # send daily notification once
+      logging.info("sending daily report")
+      sendReport(fields)
+      dailyNoticeSent = True
+    #small sleep between the loops preventing(?) a ban
+    time.sleep(1)
+
+  # check if its a new day, if so program can resend daily
+  newD = datetime.datetime.today()
+  if not newD == d:
+    d = newD
+    dailyNoticeSent = False
+
+  #time.sleep(5)
+  logging.info("completed loop, sleeping now zzzzzzzzzz")
+  time.sleep(10*60)
+
+# print("fields for day : {}".format(planningDay) )
+# print(fields)
