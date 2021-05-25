@@ -25,10 +25,7 @@ dates = [today + timedelta(days=i) for i in range(today.weekday(), 7 - today.wee
 email = "padelbott@gmail.com"
 password = "padel1234"
 
-client = Client(email, password)
-if not client.isLoggedIn():
-    client.login(email, password)
-
+client = Client(email, password, max_tries=1)
 
 def getBaseUrl():
   return "https://www.tennisvlaanderen.be/home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true"
@@ -88,39 +85,40 @@ dailyNoticeSent = False
 d = datetime.datetime.today()
 
 while True :
-  logging.info("i'm awake !")
-  #loop over each day
-  for day in dates:
-    newFields = getAvailableTimeSlots(day)
-    # newFields = newFieldsMock()[day]
-    #check if extra field is available
-    for (k, field) ,(k2, newField) in zip(fields[day].items(), newFields.items()):
-      changes = list(set(newField) - set(field))
-      if len(changes) > 0:
-        fields[day] = newFields
-        message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
-        message_id = client.send(Message(text=message), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
-        logging.info("found a change in the calender, sending :")
-        logging.info(message)
-      # send notification something changed
+  try :
+    logging.info("i'm awake !")
+    #loop over each day
+    for day in dates:
+      newFields = getAvailableTimeSlots(day)
+      # newFields = newFieldsMock()[day]
+      #check if extra field is available
+      for (k, field) ,(k2, newField) in zip(fields[day].items(), newFields.items()):
+        changes = list(set(newField) - set(field))
+        if len(changes) > 0:
+          fields[day] = newFields
+          message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
+          message_id = client.send(Message(text=message), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
+          logging.info("found a change in the calender, sending :")
+          logging.info(message)
+        # send notification something changed
 
-    if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
-      # send daily notification once
-      logging.info("sending daily report")
-      sendReport(fields)
-      dailyNoticeSent = True
-    #small sleep between the loops preventing(?) a ban
-    time.sleep(1)
+      if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
+        # send daily notification once
+        logging.info("sending daily report")
+        sendReport(fields)
+        dailyNoticeSent = True
+      #small sleep between the loops preventing(?) a ban
+      time.sleep(1)
 
-  # check if its a new day, if so program can resend daily
-  newD = datetime.datetime.today()
-  if not newD == d:
-    d = newD
-    dailyNoticeSent = False
+    # check if its a new day, if so program can resend daily
+    newD = datetime.datetime.today()
+    if not newD == d:
+      d = newD
+      dailyNoticeSent = False
 
-  #time.sleep(5)
-  logging.info("completed loop, sleeping now zzzzzzzzzz")
-  time.sleep(10*60)
-
-# print("fields for day : {}".format(planningDay) )
-# print(fields)
+    #time.sleep(5)
+    logging.info("completed loop, sleeping now zzzzzzzzzz")
+    time.sleep(10*60)
+  except KeyboardInterrupt() as e:
+    logging.info("Done running, logging out")
+    client.logout()
