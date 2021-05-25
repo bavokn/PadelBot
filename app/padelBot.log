@@ -623,3 +623,58 @@ DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "GET /reserveer
 DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "POST /home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true HTTP/1.1" 302 0
 DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "GET /reserveer-een-terrein?clubId=2293&planningDay=30-05-2021&terrainGroupId=3966&ownClub=true&clubCourts%5B0%5D=I&clubCourts%5B1%5D=O HTTP/1.1" 200 None
 INFO:root:completed loop, sleeping now zzzzzzzzzz
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2F&_rdr HTTP/1.1" 200 None
+INFO:client:Login of padelbott@gmail.com successful.
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 200 None

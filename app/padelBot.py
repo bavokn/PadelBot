@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
 import time
+import json
 from requests_html import HTMLSession
 from bs4 import BeautifulSoup
 import nest_asyncio
@@ -21,11 +22,24 @@ nest_asyncio.apply()
 #create array for upcoming week
 today = datetime.datetime.today()
 dates = [today + timedelta(days=i) for i in range(today.weekday(), 7 - today.weekday())]
-# dates = datesMock()
+
+cookies = {}
+try:
+    # Load the session cookies
+    with open('cookie.json', 'r') as f:
+        cookies = json.load(f)
+except:
+    # If it fails, never mind, we'll just login again
+    pass
+
 email = "padelbott@gmail.com"
 password = "padel1234"
 
 client = Client(email, password, max_tries=1)
+
+# Save the session again
+with open('cookie.json', 'w') as f:
+    json.dump(client.getSession(), f)
 
 def getBaseUrl():
   return "https://www.tennisvlaanderen.be/home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true"

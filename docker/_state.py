@@ -125,6 +125,21 @@ class State(object):
     @classmethod
     def login(cls, email, password, on_2fa_callback, user_agent=None):
         session = session_factory(user_agent=user_agent)
+        r = session.get("https://m.facebook.com/")
+        #check for those damn GDPR cookie popups
+        if "consent-page" in r.url:
+            cookie_data = {
+            "accept_consent": "true",
+            "fb_dtsg": "AQGQBlKAaG2ppD0:AQHomOfQwqgUT7s",
+            "jazoest": "22602",
+            "lsd": "AVptq2GrDNI",
+            "__dyn": "1KidAGm1gwHwh8-t0BBBg9odE4a2i5U4e0C86u7E39x64o1j8hwem0iy1gCwjE1xo33w2sbzo1MU88C0pS0SU2sw64w8W0k-0n6aw",
+            "__csr": "",
+            "__req": "e",
+            "__a": "AYmOaGPW72KHDROaK8bz_ToOejMRHz-8oJdha5NmF1el1zkMrPfHvNk8-e4uN1ptBK_vESVSJmrd75BVaXUFoRitAaNnefi0I2MUuk8G8Kid1g",
+            "__user": "0"
+            }
+            r = session.post("https://m.facebook.com/cookie/consent/", data= cookie_data)
 
         soup = find_input_fields(session.get("https://m.facebook.com/").text)
         data = dict(
@@ -146,7 +161,6 @@ class State(object):
         # Sometimes Facebook tries to show the user a "Save Device" dialog
         if "save-device" in r.url:
             r = session.get("https://m.facebook.com/login/save-device/cancel/")
-
         if is_home(r.url):
             return cls.from_session(session=session)
         else:
