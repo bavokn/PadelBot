@@ -41,8 +41,8 @@ password = "padel1234"
 client = Client(email, password, max_tries=1)
 
 # Save the session again
-with open('/home/user/Documentens/Padelbot/cookie.json', 'w') as f:
-    json.dump(client.getSession(), f)
+# with open('/home/user/Documentens/Padelbot/cookie.json', 'w') as f:
+#     json.dump(client.getSession(), f)
 
 def getBaseUrl():
   return "https://www.tennisvlaanderen.be/home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true"
