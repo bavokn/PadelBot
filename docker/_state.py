@@ -155,14 +155,8 @@ class State(object):
         if "save-device" in r.url:
             r = session.get("https://m.facebook.com/login/save-device/cancel/")
 
-        print(r.url)
-        with open("/home/user/Documents/PadelBot/tmp.html", "w") as fp:
-            fp.writelines(r.text)
         if is_home(r.url):
-            print("succeeded")
-            # return cls.from_session(session=session)
-            raise _exception.FBchatUserError("blip blop in here")
-
+            return cls.from_session(session=session)
         else:
             raise _exception.FBchatUserError(
                 "Login failed. Check email/password. "
