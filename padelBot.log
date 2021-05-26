@@ -165,3 +165,349 @@ DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "POST /home?p_p
 DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "GET /reserveer-een-terrein?clubId=2293&planningDay=27-05-2021&terrainGroupId=3966&ownClub=true&clubCourts%5B0%5D=I&clubCourts%5B1%5D=O HTTP/1.1" 200 None
 DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "POST /home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true HTTP/1.1" 302 0
 DEBUG:urllib3.connectionpool:https://www.tennisvlaanderen.be:443 "GET /reserveer-een-terrein?clubId=2293&planningDay=28-05-2021&terrainGroupId=3966&ownClub=true&clubCourts%5B0%5D=I&clubCourts%5B1%5D=O HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #1 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+ERROR:client:Attempt #2 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/urllib3/connection.py", line 169, in _new_conn
+    conn = connection.create_connection(
+  File "/home/bavo/.local/lib/python3.8/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.8/socket.py", line 914, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/home/bavo/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 382, in _make_request
+    self._validate_conn(conn)
+  File "/home/bavo/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1010, in _validate_conn
+    conn.connect()
+  File "/home/bavo/.local/lib/python3.8/site-packages/urllib3/connection.py", line 353, in connect
+    conn = self._new_conn()
+  File "/home/bavo/.local/lib/python3.8/site-packages/urllib3/connection.py", line 181, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7fc80906a5b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/bavo/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/home/bavo/.local/lib/python3.8/site-packages/urllib3/util/retry.py", line 574, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='m.facebook.com', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fc80906a5b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 129, in login
+    soup = find_input_fields(session.get("https://m.facebook.com/").text)
+  File "/home/bavo/.local/lib/python3.8/site-packages/requests/sessions.py", line 555, in get
+    return self.request('GET', url, **kwargs)
+  File "/home/bavo/.local/lib/python3.8/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/bavo/.local/lib/python3.8/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/bavo/.local/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='m.facebook.com', port=443): Max retries exceeded with url: / (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fc80906a5b0>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #3 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:asyncio:Using selector: EpollSelector
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 210, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 177, in from_session
+    user_id = get_user_id(session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 19, in get_user_id
+    raise _exception.FBchatException("Could not find user id")
+fbchat._exception.FBchatException: Could not find user id
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+ERROR:client:Attempt #1 failed, retrying
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 205, in login
+    self._state = State.login(
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 153, in login
+    raise _exception.FBchatUserError(
+fbchat._exception.FBchatUserError: Login failed. Check email/password. (Failed on url: https://m.facebook.com/cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr)
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 210, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 188, in from_session
+    fb_dtsg = FB_DTSG_REGEX.search(r.text).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 211, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 189, in from_session
+    fb_dtsg = FB_DTSG_REGEX.search(r.text).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 210, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 188, in from_session
+    fb_dtsg = FB_DTSG_REGEX.search(r.text).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 210, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 188, in from_session
+    fb_dtsg = FB_DTSG_REGEX.search(r.text).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 210, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 188, in from_session
+    fb_dtsg = FB_DTSG_REGEX.search(r.text).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 211, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 189, in from_session
+    fb_dtsg = FB_DTSG_REGEX.search(r.text).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 200 608
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 211, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 189, in from_session
+    fb_dtsg = FB_DTSG_REGEX.search(r.text).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 211, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 189, in from_session
+    fb_dtsg = FB_DTSG_REGEX.search(r.text).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 211, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 189, in from_session
+    fb_dtsg = FB_DTSG_REGEX.search(r.text).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 211, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 189, in from_session
+    fb_dtsg = FB_DTSG_REGEX.search(r.text).group(1)
+AttributeError: 'NoneType' object has no attribute 'group'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): www.facebook.com:443
+DEBUG:urllib3.connectionpool:https://www.facebook.com:443 "GET / HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+ERROR:client:Failed loading session
+Traceback (most recent call last):
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_client.py", line 175, in setSession
+    self._state = State.from_cookies(session_cookies, user_agent=user_agent)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 211, in from_cookies
+    return cls.from_session(session=session)
+  File "/home/bavo/.local/lib/python3.8/site-packages/fbchat/_state.py", line 186, in from_session
+    fb_dtsg = fb_dtsg_element["value"]
+  File "/home/bavo/.local/lib/python3.8/site-packages/bs4/element.py", line 1406, in __getitem__
+    return self.attrs[key]
+KeyError: 'value'
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None
+DEBUG:asyncio:Using selector: EpollSelector
+INFO:client:Logging in padelbott@gmail.com...
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): m.facebook.com:443
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET / HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "POST /login.php?login_attempt=1 HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /home.php?refsrc=https%3A%2F%2Fwww.facebook.com%2F&_rdr HTTP/1.1" 302 0
+DEBUG:urllib3.connectionpool:https://m.facebook.com:443 "GET /cookie/consent-page/?next_uri=https%3A%2F%2Fm.facebook.com%2Fhome.php%3Frefsrc%3Dhttps%253A%252F%252Fwww.facebook.com%252F&_rdr HTTP/1.1" 200 None

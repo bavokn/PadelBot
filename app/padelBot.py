@@ -28,14 +28,17 @@ try:
     # Load the session cookies
     with open('cookie.json', 'r') as f:
         cookies = json.load(f)
-except:
+except Exception() as e:
     # If it fails, never mind, we'll just login again
+    print(e)
     pass
 
 email = "padelbott@gmail.com"
 password = "padel1234"
+# email = "t@gmail.com"
+# password = "tzefzefzf"
 
-client = Client(email, password, max_tries=1)
+client = Client(email, password, max_tries=1, session_cookies = cookies)
 
 # Save the session again
 with open('cookie.json', 'w') as f:
