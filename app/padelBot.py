@@ -130,10 +130,14 @@ while True :
         time.sleep(1)
 
     # check if its a new day, if so program can resend daily
+    # setup everything up for the extra day
     newD = datetime.datetime.today()
     if not newD == d:
       d = newD
       dailyNoticeSent = False
+      dates = [d + timedelta(days=i) for i in range(d.weekday(), 7 - d.weekday())]
+      fields = {x:getAvailableTimeSlots(x) for x in dates}
+      newFields = fields
 
     #time.sleep(5)
     logging.info("completed loop, sleeping now zzzzzzzzzz")
