@@ -102,30 +102,34 @@ d = datetime.datetime.today()
 while True :
   logging.info("i'm awake !")
   #prevent disturbing during the night
-  if 9 < datetime.datetime.now().hour < 23 :
-  #loop over each day
-    for day in dates:
-      newFields = getAvailableTimeSlots(day)
-      # newFields = newFieldsMock()[day]
-      #check if extra field is available
-      for (k, field) ,(k2, newField) in zip(fields[day].items(), newFields.items()):
-        changes = list(set(newField) - set(field))
-        if len(changes) > 0:
-          fields[day] = newFields
-          message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
-          message_id = client.send(Message(text=message), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
-          logging.info("found a change in the calender, sending :")
-          logging.info(message)
-        # send notification something changed
+  if 8 < datetime.datetime.now().hour < 22 :
+    if not client.isLoggedIn(): client.login(email, password)
+    #loop over each day
+    if client.isLoggedIn():
+      for day in dates:
+        newFields = getAvailableTimeSlots(day)
+        # newFields = newFieldsMock()[day]
+        #check if extra field is available
+        for (k, field) ,(k2, newField) in zip(fields[day].items(), newFields.items()):
+          changes = list(set(newField) - set(field))
+          if len(changes) > 0:
+            fields[day] = newFields
+            message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
+            message_id = client.send(Message(text=message), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
+            logging.info("found a change in the calender, sending :")
+            logging.info(message)
+          # send notification something changed
 
-      if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
-        # send daily notification once
-        logging.info("sending daily report")
-        sendReport(fields)
-        dailyNoticeSent = True
-      #small sleep between the loops preventing(?) a ban
-      time.sleep(1)
-
+        if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
+          # send daily notification once
+          logging.info("sending daily report")
+          sendReport(fields)
+          dailyNoticeSent = True
+        #small sleep between the loops preventing(?) a ban
+        time.sleep(1)
+  else:
+    #logout after hours preventing ban
+    if client.isLoggedIn(): client.logout()
   # check if its a new day, if so program can resend daily
   # setup everything up for the extra day
   newD = datetime.datetime.today()
