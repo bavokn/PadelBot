@@ -23,26 +23,24 @@ nest_asyncio.apply()
 today = datetime.datetime.today()
 dates = [today + timedelta(days=i) for i in range(today.weekday(), 7 - today.weekday())]
 
-# cookies = {}
-# try:
-#     # Load the session cookies
-#     with open('/home/user/Documentens/Padelbot/cookie.json', 'r') as f:
-#         cookies = json.load(f)
-# except Exception() as e:
-#     # If it fails, never mind, we'll just login again
-#     print(e)
-#     pass
+cookies = {}
+try:
+    # Load the session cookies
+    with open('cookie.json', 'r') as f:
+        cookies = json.load(f)
+except Exception() as e:
+    # If it fails, never mind, we'll just login again
+    print(e)
+    pass
 
-email = "padelbott@gmail.com"
+email = "padelbot2@gmail.com"
 password = "padel1234"
-# email = "t@gmail.com"
-# password = "tzefzefzf"
 
 client = Client(email, password, max_tries=1)
 
 # Save the session again
-# with open('/home/user/Documentens/Padelbot/cookie.json', 'w') as f:
-#     json.dump(client.getSession(), f)
+with open('cookie.json', 'w') as f:
+    json.dump(client.getSession(), f)
 
 def getBaseUrl():
   return "https://www.tennisvlaanderen.be/home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true"
@@ -102,46 +100,44 @@ dailyNoticeSent = False
 d = datetime.datetime.today()
 
 while True :
-  try :
-    logging.info("i'm awake !")
-    #prevent disturbing during the night
-    if 9 < datetime.datetime.now().hour < 23 :
-    #loop over each day
-      for day in dates:
-        newFields = getAvailableTimeSlots(day)
-        # newFields = newFieldsMock()[day]
-        #check if extra field is available
-        for (k, field) ,(k2, newField) in zip(fields[day].items(), newFields.items()):
-          changes = list(set(newField) - set(field))
-          if len(changes) > 0:
-            fields[day] = newFields
-            message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
-            message_id = client.send(Message(text=message), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
-            logging.info("found a change in the calender, sending :")
-            logging.info(message)
-          # send notification something changed
+  logging.info("i'm awake !")
+  #prevent disturbing during the night
+  if 9 < datetime.datetime.now().hour < 23 :
+  #loop over each day
+    for day in dates:
+      newFields = getAvailableTimeSlots(day)
+      # newFields = newFieldsMock()[day]
+      #check if extra field is available
+      for (k, field) ,(k2, newField) in zip(fields[day].items(), newFields.items()):
+        changes = list(set(newField) - set(field))
+        if len(changes) > 0:
+          fields[day] = newFields
+          message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
+          message_id = client.send(Message(text=message), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
+          logging.info("found a change in the calender, sending :")
+          logging.info(message)
+        # send notification something changed
 
-        if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
-          # send daily notification once
-          logging.info("sending daily report")
-          sendReport(fields)
-          dailyNoticeSent = True
-        #small sleep between the loops preventing(?) a ban
-        time.sleep(1)
+      if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
+        # send daily notification once
+        logging.info("sending daily report")
+        sendReport(fields)
+        dailyNoticeSent = True
+      #small sleep between the loops preventing(?) a ban
+      time.sleep(1)
 
-    # check if its a new day, if so program can resend daily
-    # setup everything up for the extra day
-    newD = datetime.datetime.today()
-    if not newD == d:
-      d = newD
-      dailyNoticeSent = False
-      dates = [d + timedelta(days=i) for i in range(d.weekday(), 7 - d.weekday())]
-      fields = {x:getAvailableTimeSlots(x) for x in dates}
-      newFields = fields
+  # check if its a new day, if so program can resend daily
+  # setup everything up for the extra day
+  newD = datetime.datetime.today()
+  if not newD == d:
+    loggin.info("new Day !")
+    logging.info("resetting values")
+    d = newD
+    dailyNoticeSent = False
+    dates = [d + timedelta(days=i) for i in range(d.weekday(), 7 - d.weekday())]
+    fields = {x:getAvailableTimeSlots(x) for x in dates}
+    newFields = fields
 
-    #time.sleep(5)
-    logging.info("completed loop, sleeping now zzzzzzzzzz")
-    time.sleep(20*60)
-  except KeyboardInterrupt() as e:
-    logging.info("Done running, logging out")
-    client.logout()
+  #time.sleep(5)
+  logging.info("completed loop, sleeping now zzzzzzzzzz")
+  time.sleep(20*60)

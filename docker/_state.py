@@ -138,7 +138,7 @@ class State(object):
 
         #try loggin in
         r = session.post("https://m.facebook.com/login.php?login_attempt=1", data=data)
-
+        
         if "cookie" in r.url:
             beg = r.text.find("action=")+8
             end = r.text.find("\"", beg)
@@ -156,6 +156,7 @@ class State(object):
             r = session.get("https://m.facebook.com/login/save-device/cancel/")
 
         if is_home(r.url):
+            print("done")
             return cls.from_session(session=session)
         else:
             raise _exception.FBchatUserError(
