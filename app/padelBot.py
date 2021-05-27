@@ -37,7 +37,6 @@ email = "padelbot2@gmail.com"
 password = "padel1234"
 
 client = Client(email, password, max_tries=1)
-client.logout()
 
 # Save the session again
 with open('cookie.json', 'w') as f:
@@ -120,7 +119,6 @@ while True :
           logging.info("found a change in the calender, sending :")
           logging.info(message)
           #log back out
-          client.logout()
         # send notification something changed
 
       if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
@@ -128,7 +126,6 @@ while True :
         logging.info("sending daily report")
         if not client.isLoggedIn(): client.login(email, password)
         sendReport(fields, client)
-        client.logout()
         dailyNoticeSent = True
       #small sleep between the loops preventing(?) a ban
       time.sleep(1)
