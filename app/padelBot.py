@@ -129,8 +129,8 @@ while True :
   # check if its a new day, if so program can resend daily
   # setup everything up for the extra day
   newD = datetime.datetime.today()
-  if not newD == d:
-    loggin.info("new Day !")
+  if not newD > d:
+    logging.info("new Day !")
     logging.info("resetting values")
     d = newD
     dailyNoticeSent = False
