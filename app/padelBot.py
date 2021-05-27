@@ -37,6 +37,7 @@ email = "padelbot2@gmail.com"
 password = "padel1234"
 
 client = Client(email, password, max_tries=1)
+client.logout()
 
 # Save the session again
 with open('cookie.json', 'w') as f:
@@ -88,9 +89,9 @@ def getDailyReport(fields, date):
   return message
 
 # send report for each day
-def sendReport(datesDict):
+def sendReport(datesDict, clientSend):
   for k,v in datesDict.items():
-      message_id = client.send(Message(text=getDailyReport(v, k)), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
+      message_id = clientSend.send(Message(text=getDailyReport(v, k)), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
       time.sleep(1)
 
 #run function
@@ -103,33 +104,34 @@ while True :
   logging.info("i'm awake !")
   #prevent disturbing during the night
   if 8 < datetime.datetime.now().hour < 22 :
-    if not client.isLoggedIn(): client.login(email, password)
     #loop over each day
-    if client.isLoggedIn():
-      for day in dates:
-        newFields = getAvailableTimeSlots(day)
-        # newFields = newFieldsMock()[day]
-        #check if extra field is available
-        for (k, field) ,(k2, newField) in zip(fields[day].items(), newFields.items()):
-          changes = list(set(newField) - set(field))
-          if len(changes) > 0:
-            fields[day] = newFields
-            message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
-            message_id = client.send(Message(text=message), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
-            logging.info("found a change in the calender, sending :")
-            logging.info(message)
-          # send notification something changed
+    #check if logged in
+    for day in dates:
+      newFields = getAvailableTimeSlots(day)
+      # newFields = newFieldsMock()[day]
+      #check if extra field is available
+      for (k, field) ,(k2, newField) in zip(fields[day].items(), newFields.items()):
+        changes = list(set(newField) - set(field))
+        if len(changes) > 0:
+          fields[day] = newFields
+          message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
+          if not client.isLoggedIn(): client.login(email, password)
+          message_id = client.send(Message(text=message), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
+          logging.info("found a change in the calender, sending :")
+          logging.info(message)
+          #log back out
+          client.logout()
+        # send notification something changed
 
-        if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
-          # send daily notification once
-          logging.info("sending daily report")
-          sendReport(fields)
-          dailyNoticeSent = True
-        #small sleep between the loops preventing(?) a ban
-        time.sleep(1)
-  else:
-    #logout after hours preventing ban
-    if client.isLoggedIn(): client.logout()
+      if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
+        # send daily notification once
+        logging.info("sending daily report")
+        if not client.isLoggedIn(): client.login(email, password)
+        sendReport(fields, client)
+        client.logout()
+        dailyNoticeSent = True
+      #small sleep between the loops preventing(?) a ban
+      time.sleep(1)
   # check if its a new day, if so program can resend daily
   # setup everything up for the extra day
   newD = datetime.datetime.today()
