@@ -21,7 +21,7 @@ nest_asyncio.apply()
 
 #create array for upcoming week
 today = datetime.datetime.today()
-dates = [today + timedelta(days=i) for i in range(today.weekday(), 7 - today.weekday())]
+dates = [today + timedelta(days=i) for i in range(7)]
 
 cookies = {}
 try:
@@ -137,7 +137,7 @@ while True :
     logging.info("resetting values")
     d = newD
     dailyNoticeSent = False
-    dates = [d + timedelta(days=i) for i in range(d.weekday(), 7 - d.weekday())]
+    dates = [d + timedelta(days=i) for i in range(7)]
     fields = {x:getAvailableTimeSlots(x) for x in dates}
     newFields = fields
 
