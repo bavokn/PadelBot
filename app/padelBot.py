@@ -133,7 +133,7 @@ while True :
   # check if its a new day, if so program can resend daily
   # setup everything up for the extra day
   newD = datetime.datetime.today()
-  if newD > d:
+  if newD.date() > d.date():
     logging.info("new Day !")
     logging.info("resetting values")
     d = newD
