@@ -99,10 +99,11 @@ fields = {x: getAvailableTimeSlots(x) for x in dates}
 dailyNoticeSent = False
 d = datetime.datetime.today()
 
+#start the loop
 while True :
   logging.info("i'm awake !")
   #prevent disturbing during the night
-  if 8 < datetime.datetime.now().hour < 22 :
+  if 6 < datetime.datetime.now().hour < 20 :
     #loop over each day
     #check if logged in
     for day in dates:
@@ -121,7 +122,7 @@ while True :
           #log back out
         # send notification something changed
 
-      if not dailyNoticeSent and 9 < datetime.datetime.now().hour < 11 :
+      if not dailyNoticeSent and 6 < datetime.datetime.now().hour < 8 :
         # send daily notification once
         logging.info("sending daily report")
         if not client.isLoggedIn(): client.login(email, password)
@@ -132,7 +133,7 @@ while True :
   # check if its a new day, if so program can resend daily
   # setup everything up for the extra day
   newD = datetime.datetime.today()
-  if not newD > d:
+  if newD > d:
     logging.info("new Day !")
     logging.info("resetting values")
     d = newD
