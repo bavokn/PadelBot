@@ -80,7 +80,7 @@ def getAvailableTimeSlots(d, cookies = c.cookies):
   return fields
 
 def getDailyReport(fields, date):
-  message = "Daily Padel report : {} \n".format(date.strftime("%d-%m-%Y"))
+  message = "Daily Padel report - {}  : {} \n".format(calendar.day_name[date.weekday()],date.strftime("%d-%m-%Y"))
   for k, v in fields.items():
     message += k + " \n"
     for timeSlot in v:
