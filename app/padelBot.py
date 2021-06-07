@@ -66,7 +66,9 @@ def getAvailableTimeSlots(d, cookies = c.cookies):
   response = session.post(getBaseUrl(), data=loginParams, cookies = cookies)
   soup = BeautifulSoup(response.content.decode('utf-8'), features="lxml")
   table = soup.html.find_all("div", {"class": "reservation-table"})[0].find("table").find("tbody")
-  fields = {"Padel 1" : [], "Padel 2" : [], "Padel 3" : []}
+  # fields = {"Padel 1" : [], "Padel 2" : [], "Padel 3" : [], "Padel 3": [], "Padel 4": []}
+  fields = {}
+  # fields = {}
   for row in table.find_all("tr"):
     p =  row.select("td")
     t = row.select("th")[0].text
@@ -74,9 +76,12 @@ def getAvailableTimeSlots(d, cookies = c.cookies):
       field = p[0].text.replace("Reserveren in het verleden is niet toegelaten", "")
       if "vrij" in field.lower():
         timeslot = datetime.datetime.strptime(date + " " + t, '%d-%m-%Y %H:%M')
+        fkey = field.replace("Vrij", "").strip()
         #only take slots after 5, or weekend
         if (16 < timeslot.hour < 23)  or  timeslot.weekday() > 4:
-          fields[field.replace("Vrij", "").strip()].append(timeslot)
+          # check wether the padel field is allready in the list
+          if fkey not in fields: fields[fkey] = []
+          fields[fkey].append(timeslot)
   return fields
 
 def getDailyReport(fields, date):
