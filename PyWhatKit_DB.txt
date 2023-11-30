@@ -1,0 +1,40 @@
+Date: 18/12/2022
+Time: 13:6
+Phone Number: +32493767083
+Message: testing
+--------------------
+Date: 18/12/2022
+Time: 13:46
+Phone Number: +32493767083
+Message: Daily Padel report - Sunday : 18-12-2022 Padel 6 Ind 08:0010:0010:3016:0016:3021:30Padel 7 Ind 08:0010:0010:3014:3016:3017:0017:3018:0018:3020:3021:0021:30Padel 5 Ind 09:3010:0010:3011:0015:3016:0016:3021:30
+--------------------
+Date: 18/12/2022
+Time: 13:46
+Phone Number: +32493767083
+Message: Daily Padel report - Monday : 19-12-2022
+--------------------
+Date: 18/12/2022
+Time: 13:46
+Phone Number: +32493767083
+Message: Daily Padel report - Tuesday : 20-12-2022
+--------------------
+Date: 18/12/2022
+Time: 13:47
+Phone Number: +32493767083
+Message: Daily Padel report - Wednesday : 21-12-2022
+--------------------
+Date: 18/12/2022
+Time: 13:47
+Phone Number: +32493767083
+Message: Daily Padel report - Thursday : 22-12-2022
+--------------------
+Date: 18/12/2022
+Time: 13:47
+Phone Number: +32493767083
+Message: Daily Padel report - Friday : 23-12-2022 Padel 5 Ind 17:0021:30Padel 6 Ind 17:0021:30Padel 7 Ind 17:0018:3021:30
+--------------------
+Date: 18/12/2022
+Time: 13:48
+Phone Number: +32493767083
+Message: Daily Padel report - Saturday : 24-12-2022 Padel 5 Ind 08:0008:3012:0012:3013:0015:0015:3016:0016:3017:0017:3018:0018:30Padel 6 Ind 08:0008:3009:0009:3011:3012:0012:3013:0013:3014:0014:3015:0015:3016:0016:3017:0017:3018:0018:30Padel 7 Ind 08:0008:3009:0009:3010:0010:3011:0011:3012:0012:3013:0013:3014:0014:3015:0015:3016:0016:3017:0017:3018:0018:30
+--------------------

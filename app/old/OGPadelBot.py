@@ -1,53 +1,30 @@
 # -*- coding: utf-8 -*-
-import requests
 import time
-import json
 from requests_html import HTMLSession
 from bs4 import BeautifulSoup
-import nest_asyncio
-import fbchat
 import datetime
-import pprint
-from datetime import date, timedelta
-from fbchat import Client, Message, ThreadType
+from datetime import timedelta
 import calendar
 import logging
-from mocks import datesMock, fieldsMock, newFieldsMock
+from DiscordBot import send
+
 logging.basicConfig(filename='padelBot.log', level=logging.DEBUG)
-
-pp = pprint.PrettyPrinter(indent=4)
-
-nest_asyncio.apply()
 
 #create array for upcoming week
 today = datetime.datetime.today()
 dates = [today + timedelta(days=i) for i in range(7)]
 
 cookies = {}
-try:
-    # Load the session cookies
-    with open('cookie.json', 'r') as f:
-        cookies = json.load(f)
-except Exception() as e:
-    # If it fails, never mind, we'll just login again
-    print(e)
-    pass
-
-email = "padelbot2@gmail.com"
-password = "padel1234"
-
-client = Client(email, password, max_tries=1)
-
-# Save the session again
-with open('cookie.json', 'w') as f:
-    json.dump(client.getSession(), f)
 
 def getBaseUrl():
   return "https://www.tennisvlaanderen.be/home?p_p_id=58&p_p_lifecycle=1&p_p_state=maximized&p_p_mode=view&saveLastPath=0&_58_struts_action=/login/login&_58_doActionAfterLogin=true"
 
+# ClubId excelsior:2293
+# group id : 3966
+# ClubID wimbeledon: 2347
+# terrain group id wimbledon : 8685
 def getPadelURL(planningDay, terrainGroupId="3966", ownClub="true"):
-  return "/reserveer-een-terrein?clubId=2293&planningDay={}&terrainGroupId={}&ownClub={}&clubCourts[0]=I&clubCourts[1]=O".format(planningDay, terrainGroupId, ownClub)
-
+  return "/reserveer-een-terrein?clubId=2347&planningDay={}&terrainGroupId={}&ownClub={}&clubCourts[0]=I&clubCourts[1]=O".format(planningDay, terrainGroupId, ownClub)
 
 def getLoginParams(padelURL):
   return {
@@ -62,19 +39,20 @@ c = session.get(getBaseUrl())
 def getAvailableTimeSlots(d, cookies = c.cookies):
   date = d.strftime("%d-%m-%Y")
   padelURL = getPadelURL(date)
-  loginParams = getLoginParams(padelURL) 
+  loginParams = getLoginParams(padelURL)
   response = session.post(getBaseUrl(), data=loginParams, cookies = cookies)
   soup = BeautifulSoup(response.content.decode('utf-8'), features="lxml")
   table = soup.html.find_all("div", {"class": "reservation-table"})[0].find("table").find("tbody")
-  # fields = {"Padel 1" : [], "Padel 2" : [], "Padel 3" : [], "Padel 3": [], "Padel 4": []}
   fields = {}
-  # fields = {}
+  # indoorFields = ['10818242', '10818241', '10818240']
+  # indoor 7 10818242, indoor 6 10818241 , indoor 5 10818240
+  #filter out the indoor fields only
   for row in table.find_all("tr"):
-    p =  row.select("td")
+    tds =  row.select("td")
     t = row.select("th")[0].text
-    if len(p) > 0:
-      field = p[0].text.replace("Reserveren in het verleden is niet toegelaten", "")
-      if "vrij" in field.lower():
+    for p in tds:
+      field = p.text.replace("Reserveren in het verleden is niet toegelaten", "")
+      if "vrij" in field.lower() and 'ind' in field.lower():
         timeslot = datetime.datetime.strptime(date + " " + t, '%d-%m-%Y %H:%M')
         fkey = field.replace("Vrij", "").strip()
         #only take slots after 5, or weekend
@@ -93,10 +71,11 @@ def getDailyReport(fields, date):
   return message
 
 # send report for each day
-def sendReport(datesDict, clientSend):
+def sendReport(datesDict):
+  messages = []
   for k,v in datesDict.items():
-      message_id = clientSend.send(Message(text=getDailyReport(v, k)), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
-      time.sleep(1)
+    messages.append(getDailyReport(v, k))
+  send(messages)
 
 #run function
 fields = {x: getAvailableTimeSlots(x) for x in dates}
@@ -120,18 +99,15 @@ while True :
         if len(changes) > 0:
           fields[day] = newFields
           message = "{}, {} is available : {} ".format(calendar.day_name[changes[0].weekday()], k, changes[0].strftime("%H:%M"))
-          if not client.isLoggedIn(): client.login(email, password)
-          message_id = client.send(Message(text=message), thread_id="2087266384717178", thread_type=ThreadType.GROUP)
+          # send([message])
           logging.info("found a change in the calender, sending :")
           logging.info(message)
-          #log back out
-        # send notification something changed
 
+      # skip the daily report
       if not dailyNoticeSent and 6 < datetime.datetime.now().hour < 8 :
         # send daily notification once
         logging.info("sending daily report")
-        if not client.isLoggedIn(): client.login(email, password)
-        sendReport(fields, client)
+        sendReport(fields)
         dailyNoticeSent = True
       #small sleep between the loops preventing(?) a ban
       time.sleep(1)
