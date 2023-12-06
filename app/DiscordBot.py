@@ -7,12 +7,22 @@ import asyncio
 import nest_asyncio
 from PadelBot import PadelBot
 
+# ClubId excelsior:2293
+# group id : 3966
+# ClubID wimbeledon: 2347
+# terrain group id wimbledon : 8685
+
+clubs = {
+  2293: 'Excelsior',
+  2347: 'Wimbeledon'
+}
+
 nest_asyncio.apply()
 
 class Bot(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix="!", intents=discord.Intents.default())
-        self.padelBot = PadelBot()
+        self.padelBot = PadelBot(2347)
 
     async def setup_hook(self) -> None:
         # start the task to run in the background
